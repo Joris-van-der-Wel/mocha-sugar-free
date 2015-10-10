@@ -1,0 +1,67 @@
+{
+  "name": "mocha-sugar-free",
+  "version": "1.0.0",
+  "description": "Write mocha test cases without using globals or `this`. Browserify compatible. Mocha without the sugar.",
+  "main": "lib/mocha-sugar-free.js",
+  "scripts": {
+    "pretest": "jshint lib test && jscs lib test",
+    "test": "node test/run-tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joris-van-der-Wel/mocha-sugar-free.git"
+  },
+  "keywords": [
+    "mocha",
+    "karma",
+    "browser",
+    "browserify",
+    "tdd",
+    "bdd",
+    "test",
+    "npm",
+    "require",
+    "commonjs"
+  ],
+  "author": "Joris van der Wel <joris@jorisvanderwel.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Joris-van-der-Wel/mocha-sugar-free/issues"
+  },
+  "homepage": "https://github.com/Joris-van-der-Wel/mocha-sugar-free#readme",
+  "devDependencies": {
+    "chalk": "^1.1.1",
+    "istanbul": "^0.3.22",
+    "jscs": "^2.2.1",
+    "jshint": "^2.8.0",
+    "karma": "^0.13.10",
+    "karma-browserify": "^4.4.0",
+    "karma-cli": "^0.1.1",
+    "karma-mocha": "^0.2.0",
+    "mocha": "^2.3.3"
+  },
+  "jshintConfig": {
+    "node": true,
+    "bitwise": true,
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "freeze": true,
+    "immed": true,
+    "indent": 8,
+    "latedef": true,
+    "newcap": true,
+    "noarg": true,
+    "nonbsp": true,
+    "nonew": true,
+    "quotmark": "single",
+    "undef": true,
+    "unused": "vars",
+    "strict": true,
+    "laxbreak": true
+  },
+  "dependencies": {
+    "xtend": "^4.0.0"
+  }
+}

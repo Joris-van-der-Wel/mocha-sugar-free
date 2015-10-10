@@ -1,0 +1,6 @@
+/node_modules
+/jsdoc
+/coverage
+/.idea
+/mocha-sugar-free.iml
+/npm-debug.log
