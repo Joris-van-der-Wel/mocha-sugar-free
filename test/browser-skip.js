@@ -21,7 +21,8 @@ sugarFree.describe('mocha-sugar-free: browser skip', function() {
 
         sugarFree.it('Should be skipped in node', function() {
 
-                if (typeof HTMLElement === 'undefined') {
+                if (typeof WorkerGlobalScope === 'undefined' &&
+                    typeof HTMLElement === 'undefined') {
                         throw Error('Should have been skipped');
                 }
 
