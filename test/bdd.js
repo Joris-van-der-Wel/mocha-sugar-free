@@ -2,6 +2,7 @@
 
 var assert = require('assert');
 var sugarFree = require('..');
+var Promise = require('bluebird');
 
 var counter = 0;
 
@@ -20,12 +21,18 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
                 ++counter;
         });
 
-        sugarFree.it('Pass', function(context) {
+        sugarFree.it('Pass: async', function(context) {
                 setTimeout(function(){
                         ++counter;
                         context.done();
                 }, 10);
         }, {async: true});
+
+        sugarFree.it('Pass: return promise', function() {
+                return Promise.delay(10).then(function() {
+                        ++counter;
+                });
+        });
 
         sugarFree.it('Fail: Time out after 25ms', function() {
                 ++counter;
@@ -184,6 +191,43 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
                 });
         });
 
+        sugarFree.describe('Hooks: Promise', function() {
+                var progression = 0;
+
+                sugarFree.it('First', function() {
+                        assert.equal(progression, 2);
+                        ++progression;
+                });
+
+                sugarFree.before(function() {
+                        return Promise.delay(10).then(function() {
+                                ++progression;
+                        });
+                });
+
+                sugarFree.beforeEach(function() {
+                        return Promise.delay(10).then(function() {
+                                ++progression;
+                        });
+                });
+
+                sugarFree.afterEach(function() {
+                        return Promise.delay(10).then(function() {
+                                ++progression;
+                        });
+                });
+
+                sugarFree.after(function() {
+                        return Promise.delay(10).then(function() {
+                                ++progression;
+                        });
+                });
+
+                sugarFree.after(function() {
+                        assert.equal(progression, 5);
+                });
+        });
+
         sugarFree.describe('arguments handling', function() {
                 sugarFree.it({
                         title: 'Pass 1',
@@ -241,8 +285,6 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
 
         // final check to find out if everything fired properly
         sugarFree.after(function afterEverything() {
-                if (counter !== 1003) {
-                        assert.equal(counter, 13, 'After: counter should be 13, not ' + counter);
-                }
+                assert.equal(counter, 14, 'After: counter should be 14, not ' + counter);
         });
 });
