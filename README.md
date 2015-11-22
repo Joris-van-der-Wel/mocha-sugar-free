@@ -40,7 +40,9 @@ describe('Tutorial', suiteContext => {
         skip: false,              // always skip this test?
         skipIfBrowser: false,     // skip this test if it is run in a web browser?
         skipUnlessBrowser: false, // skip this test if it is run in node.js?
-        skipIfWebWorker: false    // skip this test if it is ran in a Web Worker?
+        skipIfWebWorker: false,   // skip this test if it is ran in a Web Worker?
+        expectPromise: false  // throw an exception if the test function does not 
+                              // return a Promise (thenable)?
     });
 });
 

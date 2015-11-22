@@ -34,6 +34,16 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
                 });
         });
 
+        sugarFree.it('Pass: return promise and expectPromise', function() {
+                return Promise.delay(10).then(function() {
+                        ++counter;
+                });
+        }, {expectPromise: true});
+
+        sugarFree.it('Fail: do not return promise and expectPromise', function fooBar() {
+                ++counter;
+        }, {expectPromise: true});
+
         sugarFree.it('Fail: Time out after 25ms', function() {
                 ++counter;
         }, {async: true, timeout: 25});
@@ -203,25 +213,25 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
                         return Promise.delay(10).then(function() {
                                 ++progression;
                         });
-                });
+                }, {expectPromise: true});
 
                 sugarFree.beforeEach(function() {
                         return Promise.delay(10).then(function() {
                                 ++progression;
                         });
-                });
+                }, {expectPromise: true});
 
                 sugarFree.afterEach(function() {
                         return Promise.delay(10).then(function() {
                                 ++progression;
                         });
-                });
+                }, {expectPromise: true});
 
                 sugarFree.after(function() {
                         return Promise.delay(10).then(function() {
                                 ++progression;
                         });
-                });
+                }, {expectPromise: true});
 
                 sugarFree.after(function() {
                         assert.equal(progression, 5);
@@ -285,6 +295,6 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
 
         // final check to find out if everything fired properly
         sugarFree.after(function afterEverything() {
-                assert.equal(counter, 14, 'After: counter should be 14, not ' + counter);
+                assert.equal(counter, 16, 'After: counter should be 16, not ' + counter);
         });
 });
