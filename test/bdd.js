@@ -264,6 +264,24 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
                         },
                         {async: true}
                 );
+
+                sugarFree.it(
+                        'Pass 4',
+                        {async: true},
+                        function(context) {
+                                ++counter;
+                                context.done();
+                        }
+                );
+
+                sugarFree.it(
+                        {async: true},
+                        'Pass 5',
+                        function(context) {
+                                ++counter;
+                                context.done();
+                        }
+                );
         });
 
         sugarFree.xdescribe('Pending Suite: xdescribe', function() {
@@ -295,6 +313,6 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
 
         // final check to find out if everything fired properly
         sugarFree.after(function afterEverything() {
-                assert.equal(counter, 16, 'After: counter should be 16, not ' + counter);
+                assert.equal(counter, 18, 'After: counter should be 18, not ' + counter);
         });
 });
