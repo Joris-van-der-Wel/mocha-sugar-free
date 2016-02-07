@@ -29,7 +29,7 @@ console.info(chalk.bgCyan(chalk.grey(
 spawnTest('test/bdd.js');
 console.info(chalk.bgCyan(chalk.grey(
         '                                                               \n' +
-        '   test/bdd.js: Expecting: ' + chalk.green('17 passing') + ', 11 pending, '+chalk.red('3 failing')+'   \n' +
+        '   test/bdd.js: Expecting: ' + chalk.green('19 passing') + ', 13 pending, '+chalk.red('3 failing')+'   \n' +
         '                                                               '
 )));
 

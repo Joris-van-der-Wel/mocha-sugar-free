@@ -12,12 +12,17 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
                 assert.deepEqual(
                         Object.keys(sugarFree).sort(),
                         [ 'after', 'afterEach', 'before', 'beforeEach',
-                          'describe', 'detectedInterface', 'it', 'run',
-                          'xdescribe', 'xit' ]
+                          'context', 'describe', 'detectedInterface',
+                          'it', 'run', 'specify', 'xcontext', 'xdescribe',
+                          'xit', 'xspecify' ]
                 );
         });
 
         sugarFree.it('Pass', function() {
+                ++counter;
+        });
+
+        sugarFree.specify('Pass ( specify )', function() {
                 ++counter;
         });
 
@@ -72,6 +77,10 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
         }, {async: true});
 
         sugarFree.xit('Pending ( xit )', function() {
+                throw Error('Should have been skipped');
+        });
+
+        sugarFree.xspecify('Pending ( xspecify )', function() {
                 throw Error('Should have been skipped');
         });
 
@@ -290,6 +299,12 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
                 });
         });
 
+        sugarFree.xcontext('Pending Suite: xcontext', function() {
+                sugarFree.it('Pending', function() {
+                        throw Error('Should have been skipped');
+                });
+        });
+
         sugarFree.xdescribe({
                 title: 'Pending suite (xdescribe with options)',
                 fn   : function() {
@@ -311,8 +326,14 @@ sugarFree.describe('mocha-sugar-free: bdd', function() {
                 });
         }, {skip: true});
 
+        sugarFree.context('Suite ( context )', function() {
+                sugarFree.it('Pass', function() {
+                        ++counter;
+                });
+        });
+
         // final check to find out if everything fired properly
         sugarFree.after(function afterEverything() {
-                assert.equal(counter, 18, 'After: counter should be 18, not ' + counter);
+                assert.equal(counter, 20, 'After: counter should be 20, not ' + counter);
         });
 });
