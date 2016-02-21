@@ -1,6 +1,6 @@
 {
   "name": "mocha-sugar-free",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Write mocha test cases without using globals or `this`. Browserify compatible. Mocha without the sugar.",
   "main": "lib/mocha-sugar-free.js",
   "scripts": {
