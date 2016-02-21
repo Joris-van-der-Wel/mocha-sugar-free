@@ -6,6 +6,8 @@ example
 -------
 
 ```javascript
+// Note: this example uses ES6 features, however this module does not require it.
+
 const describe = require('mocha-sugar-free').describe;
 const it = require('mocha-sugar-free').it;
 const assert = require('assert');
@@ -15,6 +17,7 @@ describe('Tutorial', suiteContext => {
 
     it('should demonstrate a simple example', () => assert.equal(10 / 2, 5) );
     
+    // You can use arrow functions, which is not supported in regular mocha:
     it('should demonstrate that `this` is not used', context => {
         context.slow(1); // warn that the test is slow if it takes more than 1ms
         context.timeout(5); // should timeout after 5ms
@@ -48,4 +51,5 @@ describe('Tutorial', suiteContext => {
 
 ```
 
-Note: this example uses ES6 features, however this module does not require it.
+Test cases that use `mocha-sugar-free` are run in the same way as normal mocha test cases, you can even mix them. You can not use `mocha-sugar-free` standalone, you should run your test cases using `mocha foo.js` (not `node foo.js`)
+
